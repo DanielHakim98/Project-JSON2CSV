@@ -12,4 +12,11 @@ def test_get_json():
   "Test failed because returned object is neither Dictionary nor List."
 
 def test_get_keys():
+  sample_json = [
+    {"name": "Tom", "age": 10},
+    {"name": "Mark", "age": 5, "height":4},
+    {"name": "Pam", "age": 7, "weight":90}
+  ]
+
+  assert(get_keys(sample_json)) == ["name", "age", "height","weight"]
   assert(type(get_keys())) == list,"Test failed because returned keys is not in a list."

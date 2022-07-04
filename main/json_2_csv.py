@@ -13,3 +13,16 @@ def get_json():
     json_data = json.load(f)
   return json_data
 
+def get_keys(obj):
+  if type(obj) == list:
+    keys = set()
+    for item in obj:
+      keys.update(item.keys())
+      #ALT METHOD:
+      # keys = set().union(*(d.keys() for d in sample))
+    return list(keys)
+  else:
+    print("none")
+
+
+
