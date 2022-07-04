@@ -22,6 +22,8 @@ def get_keys(obj):
   else:
     return obj.keys()
 
+def get_rows(obj):
+  pass
 
 
 

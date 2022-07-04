@@ -21,10 +21,14 @@ sample_json =\
 
 def test_get_keys():
   keys_from_json = get_keys(sample_json)
-  assert(set(keys_from_json)) ==set(["name","age","weight","height"]),\
+  assert(set(keys_from_json)) == set(["name","age","weight","height"]),\
     "Keys retrieved are not the same as expected."
 
 def test_returned_keys_are_list():
   keys_from_json = get_keys(sample_json)
   assert(type(keys_from_json)) == list,\
     "Returned keys is not in a list."
+
+def test_get_rows():
+  sample_obj = {"name": "Mark", "age": 5, "height":4}
+  assert(get_rows(sample_obj)) == """"Mark",5,4"""
