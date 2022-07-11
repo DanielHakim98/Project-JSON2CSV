@@ -31,4 +31,7 @@ def test_returned_keys_are_list():
 
 def test_get_rows():
   sample_obj = {"name": "Mark", "age": 5, "height":4}
-  assert(get_rows(sample_obj)) == """"Mark",5,4"""
+  assert(get_rows(sample_obj)) == """Mark,5,4"""
+
+  sample_obj = {"name": "Mark s", "age": 5, "height":4}
+  assert(get_rows(sample_obj)) == """"Mark s",5,4"""
