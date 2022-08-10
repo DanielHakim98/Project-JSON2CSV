@@ -51,13 +51,22 @@ def convert_to_csv(data,header):
             str_header += ','
     all_rows.append(str_header)
 
-    # Collect data from dictionary and make it into list of header + rows
-    for idx,item in enumerate(data):
+    if isinstance(data,list):
+        # Collect data from list of dictionary and make it into list of header + rows
+        for idx,item in enumerate(data):
+            out_str = ""
+            # Extract row value with respect to its column name
+            for idx,value in enumerate(header):
+                out_str += '"'+ str(item.get(value)) + '"'
+                # Concatenate ',' if it's not the end of row
+                if idx < len(header)-1:
+                    out_str += ','
+            out_str = out_str.replace("None", "")
+            all_rows.append(out_str)
+    else:
         out_str = ""
-        # Extract row value with respect to its column name
         for idx,value in enumerate(header):
-            out_str += '"'+ str(item.get(value)) + '"'
-            # Concatenate ',' if it's not the end of row
+            out_str += '"'+ str(data.get(value)) + '"'
             if idx < len(header)-1:
                 out_str += ','
         out_str = out_str.replace("None", "")
