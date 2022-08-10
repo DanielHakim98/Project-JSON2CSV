@@ -7,10 +7,7 @@ sys.path.append(parent_path)
 
 from main.json_2_csv import *
 
-def test_get_json():
-  json_path = parent_path + '/sample/sample2.json'
-  assert type(get_json(json_path)) == dict or type(get_json()) == list,\
-    "Returned object is neither Dictionary nor List."
+
 
 sample_json =\
 [
@@ -19,19 +16,24 @@ sample_json =\
     {"name": "Pam", "age": 7, "weight":90}
 ]
 
-def test_get_keys():
-  keys_from_json = get_keys(sample_json)
-  assert(set(keys_from_json)) == set(["name","age","weight","height"]),\
-    "Keys retrieved are not the same as expected."
+def test_get_json():
+    json_path = parent_path + '/sample/sample2.json'
+    assert type(get_json(json_path)) == dict \
+        or type(get_json()) == list,\
+    "Returned object is neither Dictionary nor List."
 
-def test_returned_keys_are_list():
-  keys_from_json = get_keys(sample_json)
-  assert(type(keys_from_json)) == list,\
-    "Returned keys is not in a list."
+def test_csv_header():
+    assert detect_csv_header(sample_json) == ['name','age','height','weight'],\
+        "Does not equal expected list of columns"
 
-def test_get_rows():
-  sample_obj = {"name": "Mark", "age": 5, "height":4}
-  assert(get_rows(sample_obj)) == """Mark,5,4"""
+sample_csv_data = [
+    'name,age,height,weight',
+    '"Tom","10","",""',
+    '"Mark","5","4",""',
+    '"Pam","7","","90"'
+]
 
-  sample_obj = {"name": "Mark s", "age": 5, "height":4}
-  assert(get_rows(sample_obj)) == """"Mark s",5,4"""
+def test_convert_to_csv():
+    header = detect_csv_header(sample_json)
+    csv_data = convert_to_csv(sample_json,header)
+    assert csv_data == sample_csv_data
