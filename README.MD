@@ -66,3 +66,8 @@ Project Idea comes from [here](https://github.com/florinpop17/app-ideas/blob/mas
   ]
   ```
 ---
+4/9/22
+* Start development of Front-End side for the app.
+* Add Input Forms (Insert + Area) and style it.
+* Modify index.html for input forms and organize it to comply with HTML standard.
+---
